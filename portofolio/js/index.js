@@ -8,7 +8,13 @@ const contact = document.querySelector('.contact');
 const form = contact.querySelector('form');
 const form_p = form.querySelectorAll('p');
 const form_input = form.querySelectorAll('input');
+const aside = document.querySelector('aside');
 const bookmark = document.querySelector('aside').querySelector('.bookmark');
+const sosmed = document.querySelectorAll('.sosmed');
+const home_wrapper_p = document.querySelector('.home').querySelector('.wrapper');
+
+home_wrapper_p.style.height = window.innerHeight + 'px';
+aside.style.height = window.innerHeight - 100 + 'px';
 
 nav.addEventListener('click', function(e) {
 	if(e.target.localName == 'a') {
@@ -86,10 +92,9 @@ for(let i=0; i<bullets.length; i++) {
 		bullets[i].classList.add('bullet-active');
 		switch(i) {
 			case 0:
-			thumbs[0].src = "../img/gallery/thumb_1.png";
-			thumbs[1].src = "../img/gallery/thumb_2.png";
-			thumbs[2].src = "../img/gallery/thumb_3.png";
-			thumbs[3].src = "../img/gallery/thumb_4.png";
+			for(let i=0; i<thumbs.length; i++) {
+				thumbs[i].src = "../img/gallery/thumb_"+ (i+1) +".png";
+			}
 			jumbo.src = thumbs[0].src;
 			for(let i=0; i<thumbs.length; i++) {
 				if(thumbs[i].classList.contains('thumb-active')) {
@@ -99,10 +104,9 @@ for(let i=0; i<bullets.length; i++) {
 			thumbs[0].classList.add('thumb-active');
 			break;
 			case 1:
-			thumbs[0].src = "../img/gallery/thumb_2.png";
-			thumbs[1].src = "../img/gallery/thumb_3.png";
-			thumbs[2].src = "../img/gallery/thumb_4.png";
-			thumbs[3].src = "../img/gallery/thumb_5.png";
+			for(let i=0; i<thumbs.length; i++) {
+				thumbs[i].src = "../img/gallery/thumb_"+ (i+2) +".png";
+			}
 			jumbo.src = thumbs[0].src;
 			for(let i=0; i<thumbs.length; i++) {
 				if(thumbs[i].classList.contains('thumb-active')) {
@@ -112,10 +116,9 @@ for(let i=0; i<bullets.length; i++) {
 			thumbs[0].classList.add('thumb-active');
 			break;
 			case 2:
-			thumbs[0].src = "../img/gallery/thumb_3.png";
-			thumbs[1].src = "../img/gallery/thumb_4.png";
-			thumbs[2].src = "../img/gallery/thumb_5.png";
-			thumbs[3].src = "../img/gallery/thumb_1.png";
+			for(let i=thumbs.length, j=0; i>0, j<thumbs.length; i--, j++) {
+				thumbs[j].src = "../img/gallery/thumb_"+ (i+1) +".png";
+			}
 			jumbo.src = thumbs[0].src;
 			for(let i=0; i<thumbs.length; i++) {
 				if(thumbs[i].classList.contains('thumb-active')) {
@@ -131,4 +134,10 @@ for(let i=0; i<bullets.length; i++) {
 form_p[2].style.paddingRight = '30px';
 form_p[2].style.marginLeft = '-5px';
 
-console.log(window);
+sosmed.forEach(function(sosmed_) {
+	sosmed_.addEventListener('click', function(e) {
+		window.open('https://www.' + e.target.classList[1] + '.com');
+	});
+});
+
+//console.log(sosmed);
